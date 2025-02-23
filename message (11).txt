@@ -1,0 +1,318 @@
+--[[ Ask to ChatGPT or Deepseek if you need help with this --- Remember put this before the loadstring/script
+	Togle: boolean (true or false)
+	Slider: number (3)
+	Dropdown: string ("Option 1")
+	MultiDropdown: table ({"Option 1", "Option 2"})
+	Input: string ("Hello")
+]]
+
+
+
+--Pet Simulator 99!
+_G.ZapSettings = {
+	["AutoTeleportToBestEventEggAreaToggle"] = false, 
+	["AutoBuyNextEventAreaToggle"] = false, 
+	["AutoBuyNearestEventEggToggle"] = false, 
+	["AutoCompleteEventGateQuestToggle"] = false, 
+	["AutoTeleportToEventAreaPackNameDropdown"] = "Retro Pack", -- Options = {"Retro Pack", "Nightmare Pack", "Fantasy Pack"}
+	["AutoTeleportToEventAreaPackToggle"] = false, 
+	["AutoBuyNearestEventPackToggle"] = false, 
+	["AutoOpenEventPackTableMultiDropdown"] = {}, -- Options = {"Retro Pack", "Nightmare Pack", "Fantasy Pack"}
+	["AutoOpenEventPackToggle"] = false, 
+	["AutoCombineEventCardToggle"] = false, 
+	["AutoBuyEventCardUpgradesTableMultiDropdown"] = {}, -- Options = {"Cheaper Packs", "Cheaper Trade Ins", "Bonus Card Chance", "Purchase More Packs"}
+	["AutoBuyEventCardUpgradesToggle"] = false, 
+	["NewTitanicCardsWebhookInput"] = false, 
+	["NewTitanicCardsToggle"] = false, 
+	["NewHugeCardsWebhookInput"] = false, 
+	["NewHugeCardsToggle"] = false, 
+	["AutoMailTitanicCardsAccountUsernameInput"] = false, 
+	["AutoMailTitanicCardsAmountSlider"] = 3, -- Range = {1, 10}
+	["AutoMailTitanicCardsToggle"] = false, 
+	["AutoMailHugeCardsAccountUsernameInput"] = false, 
+	["AutoMailHugeCardsAmountSlider"] = 3, -- Range = {1, 10}
+	["AutoMailHugeCardsToggle"] = false, 
+	["NewGargantuanPetsWebhookInput"] = false, 
+	["NewGargantuanPetsToggle"] = false, 
+	["NewTitanicPetsWebhookInput"] = false, 
+	["NewTitanicPetsToggle"] = false, 
+	["NewHugePetsWebhookInput"] = false, 
+	["NewHugePetsToggle"] = false, 
+	["NewExclusivePetsWebhookInput"] = false, 
+	["NewExclusivePetsToggle"] = false, 
+	["DisableBreakablesModelsToggle"] = false, 
+	["DisablePetsRenderingToggle"] = false, 
+	["DisableEffectsRenderingToggle"] = false, 
+	["DisableConfettiRenderingToggle"] = false, 
+	["DeleteUnnecessaryPartsToggle"] = false, 
+	["InfinitePetSpeedToggle"] = false, 
+	["AutoTapToggle"] = false, 
+	["AutoEfficientFarmToggle"] = false, 
+	["AutoTapModeDropdown"] = "Random", -- Options = {"Random", "Nearest"}
+	["AutoCollectToggle"] = false, 
+	["AutoUseUltimateToggle"] = false, 
+	["AutoTeleportToBestAreaToggle"] = false, 
+	["AutoBuyNextAreaToggle"] = false, 
+	["AutoCompleteGateQuestToggle"] = false, 
+	["AutoRebirthToggle"] = false, 
+	["AutoTeleportToBestWorldToggle"] = false, 
+	["AutoTeleportToHackerAreaSurgedToggle"] = false, 
+	["MiscItemDropdown"] = "Basic Coin Jar", -- Options = {"Basic Coin Jar", "Giant Coin Jar", "Basic Item Jar", "Comet", "Mini Pinata", "Mini Lucky Block", "Party Box"}
+	["AutoUseMiscItemToggle"] = false, 
+	["SelectedFlagDropdown"] = "Strength Flag", -- Options = {"Strength Flag", "Magnet Flag", "Coins Flag", "Hasty Flag", "Diamonds Flag", "Fortune Flag", "Rainbow Flag", "Shiny Flag", "Exotic Treasure Flag"}
+	["AutoUseFlagToggle"] = false, 
+	["AutoUseBreakableSprinkler"] = false, 
+	["AutoUseTNTToggle"] = false, 
+	["AutoUseTNTDelaySlider"] = 7.5, -- Range = {0.1, 30}
+	["AutoUseTNTCreateToggle"] = false, 
+	["AutoUseTNTCrateDelatSlider"] = 15, -- Range = {0.1, 60}
+	["AutoBuyUpgradesToggle"] = false, 
+	["AutoBuyPetEquipSlotsToggle"] = false, 
+	["AutoBuyEggBundleSlotsToggle"] = false, 
+	["AutoBuyEggNameDropdown"] = "", -- Options not properly defined
+	["AutoBuyEggTeleportToggle"] = false, 
+	["AutoBuyEggToggle"] = false, 
+	["DisableEggAnimationToggle"] = false, 
+	["AutoMakePetsGoldToggle"] = false, 
+	["AutoMakePetsRainbowToggle"] = false, 
+	["PetNameAutoFuseInput"] = false, 
+	["DelayBetweenBalloonsSlider"] = 3, -- Range = {3, 100}
+	["AutoFusePetsToggle"] = false, 
+	["AutoCharmPetsModeDropdown"] = "Hammer", -- Options = {"Hammer", "Chisel"}
+	["AutoCharmPetsCharmTypeDropdown"] = "Bonus Charm", -- Options = {"Bonus Charm", "Agility Charm", "Strength Charm", "Criticals Charm", "Coins Charm", "TNT Charm", "Diamonds Charm", "XP Charm", "Lightning Charm", "Glittering Charm", "Royalty Charm", "Overload Charm"}
+	["AutoCharmPetsToggle"] = false, 
+	["AutoCompleteRankQuestTableMultiDropdown"] = {"Break x breakables in best area", "Break x breakables", "Break x diamond breakables", "Break x Coins", "Break x Safes", "Break x Presents", "Break x comets in best area", "Break x comets", "Break x coin jars in best area", "Break x coin jars", "Break x lucky block event in best area", "Break x pinatas in best area", "Break x minichests in best area", "Break x minichests", "Break x superior minichests in best area", "Hatch x of your best eggs", "Hatch x eggs", "Hatch x rare  pets", "Make x golden pets from best egg", "Make x rainbow pets from best egg", "Use x fruits", "Use x flags", "Use x Tier x Potions", "Collect x potions", "Collect x enchants", "Upgrade to x Tier x Potions", "Upgrade to x Tier x Enchants"}, -- Options = {"Break x? breakables in best area", "Break x? breakables", "Break x? diamond breakables", "Break x? Coins", "Break x? Safes", "Break x? Presents", "Break x? comets in best area", "Break x? comets", "Break x? coin jars in best area", "Break x? coin jars", "Break x? lucky block event in best area", "Break x? pinatas in best area", "Break x? mini-chests in best area", "Break x? mini-chests", "Break x? superior mini-chests in best area", "Hatch x? of your best eggs", "Hatch x? eggs", "Hatch x? rare ?? pets", "Make x? golden pets from best egg", "Make x? rainbow pets from best egg", "Use x? fruits", "Use x? flags", "Use x? Tier x? Potions", "Collect x? potions", "Collect x? enchants", "Upgrade to x? Tier x? Potions", "Upgrade to x? Tier x? Enchants"}
+	["AutoCompleteRankQuestMaxRankValueSlider"] = 33, -- Range = {1, 33}
+	["AutoCompleteRankQuestToggle"] = false, 
+	["OpenGiftsIfNecessaryTableMultiDropdown"] = {"Gift Bag", "Large Gift Bag", "Flag Bundle", "Potion Bundle", "Enchant Bundle", "Mini Chest", "Large Enchant Bundle", "Large Potion Bundle", "Rainbow Mini Chest"}, -- Options = {"Gift Bag", "Large Gift Bag", "Flag Bundle", "Potion Bundle", "Enchant Bundle", "Mini Chest", "Large Enchant Bundle", "Large Potion Bundle", "Rainbow Mini Chest"}
+	["OpenGiftsIfNecessaryToggle"] = false, 
+	["AutoAreaQuestToggle"] = false, 
+	["IgnoreBreakBreakablesQuestToggle"] = false, 
+	["IgnoreBreakDiamondBreakablesQuestToggle"] = false, 
+	["IgnoreGetCriticalHitsQuestToggle"] = false, 
+	["IgnoreCollectLootbagsQuestToggle"] = false, 
+	["IgnoreUseFlagsQuestToggle"] = false, 
+	["IgnoreBreakLuckyBlockEventQuestToggle"] = false, 
+	["IgnoreBreakCoinJarQuestToggle"] = false, 
+	["IgnoreBreakPinataQuestToggle"] = false, 
+	["AutoClaimMailboxToggle"] = false, 
+	["AutoMailPetsAccountUsernameInput"] = false, 
+	["AutoMailPetsAccountTypeDropdown"] = "All", -- Options = {"All", "New Pets"}
+	["AutoMailHugePetsToggle"] = false, 
+	["AutoMailExclusivePetsToggle"] = false, 
+	["AutoMailStatPetAccountUsernameInput"] = false, 
+	["AutoMailStatPetNameInput"] = false, 
+	["AutoMailStatPetAmountSlider"] = 500000, -- Range = {1000, 1000000}
+	["AutoMailStatPetToggle"] = false, 
+	["AutoClaimFreeGiftsToggle"] = false, 
+	["AutoClaimRankRewardsToggle"] = false, 
+	["AutoCalimHiddenPresentsToggle"] = false, 
+	["AutoClaimDefaultForeverPackFreeGiftToggle"] = false, 
+	["AutoFindShinyRelicsToggle"] = false, 
+	["AutoPopBalloonsToggle"] = false, 
+	["AutoLeaveStairwayToHeavenToggle"] = false, 
+	["AutoTreehouseMerchantToggle"] = false, 
+	["AutoGeneralStoreToggle"] = false, 
+	["AutoCrystalKeyCastleToggle"] = false, 
+	["BoostTableMultiDropdown"] = {}, -- Options = {"Diamonds Boost", "Drops Boost", "Luck Boost"}
+	["AutoBuyBoostMaximumTimeSlider"] = 24, -- Range = {0, 24}
+	["AutoBuyBoostMinimumTimeSlider"] = 1, -- Range = {0, 24}
+	["AutoBuyBoostToggle"] = false, 
+	["WingsUpgradesTableMultiDropdown"] = {}, -- Options = {"Better Efficiency", "Quicker Recharge Time", "Faster Horizontal Speed", "Faster Vertical Speed"}
+	["AutoBuyWingsUpgradesToggle"] = false, 
+	["DoodleUpgradesTableMultiDropdown"] = {}, -- Options = {"Drain Jar Slower", "FIll Jar Faster", "Rarer Color Drops"}
+	["AutoBuyDoodleUpgradesToggle"] = false, 
+	["FruitTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon", "Candycane", "Rainbow"}
+	["AutoEatFruitAmountSlider"] = 1, -- Range = {1, 100}
+	["AutoEatFruitTypeDropdown"] = "Normal", -- Options = {"Normal", "Shiny"}
+	["AutoEatFruitToggle"] = false, 
+	["ToyTableMultiDropdown"] = {}, -- Options = {"Toy Bone", "Toy Ball", "Squeaky Toy"}
+	["AutoUseToyToggle"] = false, 
+	["PotionTableMultiDropdown"] = {}, -- Options = {"Coins", "Damage", "Diamonds", "Treasure Hunter", "Walkspeed", "Lucky", "Huge"}
+	["AutoUsePotionToggle"] = false, 
+	["GiftTableMultiDropdown"] = {}, -- Options = {"Gift Bag", "Large Gift Bag", "Charm Stone", "Seed Bag", "Flag Bundle", "Toy Bundle", "Potion Bundle", "Enchant Bundle", "Mini Chest", "Large Enchant Bundle", "Large Potion Bundle", "Fruit Bundle", "Rainbow Mini Chest", "Diamond Gift Bag"}
+	["AutoOpenGiftToggle"] = false, 
+	["SelectGiftsMultiDropdownn"] = {}, -- Options not properly defined
+	["AutoOpenLootboxToggle"] = false, 
+	["AutoCombineKeyModeDropdown"] = "All at Once", -- Options = {"All at Once", "1 By 1"}
+	["KeysTableMultiDropdown"] = {}, -- Options = {"Crystal Key", "Secret Key", "Tech Key", "Void Key", "Hacker Key"}
+	["AutoCombineKeysToggle"] = false, 
+	["AutoOpenCristalChestToggle"] = false, 
+	["AutoOpenTechChestToggle"] = false, 
+	["AutoOpenVoidChestToggle"] = false, 
+	["AutoOpenHackerChestToggle"] = false, 
+	["AutoSpinSpinnyWheelToggle"] = false, 
+	["AutoSpinTechSpinnyWheelToggle"] = false, 
+	["AutoSpinDiamondWheelToggle"] = false, 
+	["AutoSpinVoidSpinnyWheelToggle"] = false, 
+	["UpgradeFruitTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon"}
+	["AutoUpgradeFruitToRainbowToggle"] = false, 
+	["UpgradeFruitShinyTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon", "Rainbow"}
+	["AutoUpgradeFruitToShinyToggle"] = false, 
+	["AutoUpgradePotionsToggle"] = false, 
+	["AutoUpgradeEnchantsToggle"] = false, 
+	["ObbyMethodDropdown"] = "Bypass", -- Options = {"Bypass", "Legit"}
+	["ObbyDropdown"] = "", -- Options not properly defined
+	["AutoMinifieldToggle"] = false, 
+	["AutoAtlantiSpeedDropdown"] = "Normal", -- Options = {"Normal", "Fast", "Extreme"}
+	["AutoAtlantisToggle"] = false, 
+	["FishingTypeDropdown"] = "Normal Fishing", -- Options = {"Normal Fishing", "Advanced Fishing"}
+	["AutoFishingToggle"] = false, 
+	["AutoFishingDeepPoolsToggle"] = false, 
+	["AutoBuyNextRodMerchantToggle"] = false, 
+	["DigsiteTypeDropdown"] = "Normal Digsite", -- Options = {"Normal Digsite", "Advanced Digsite"}
+	["AutoDigsiteToggle"] = false, 
+	["AutoDigsiteRowBelowToggle"] = false, 
+	["AutoFarmDigsiteChestToggle"] = false, 
+	["DigsiteChestEspToggle"] = false, 
+	["AutoOpenPrisonChestToggle"] = false, 
+	["UseGoldenPrisonKeyToggle"] = false, 
+	["AutoBreakPoliceStationChestToggle"] = false, 
+	["AutoBuyPoliceStationEggToggle"] = false, 
+	["AutoTeleportToBestSummerEggToggle"] = false, 
+	["AutoBuyNearestSummerEggToggle"] = false, 
+	["AutoTeleportToVirusBossChestToggle"] = false, 
+	["ServerHopWhenNoVirusBossChestModeDropdown"] = "Mode 1", -- Options = {"Mode 1", "Mode 2"}
+	["AutoServerHopWhenNoVirusBossChestToggle"] = false, 
+	["AutoBreakVirusBossChestToggle"] = false, 
+	["AutoBreakVirusGuardsBossChestToggle"] = false, 
+	["AutoTeleportToBestVirusEggToggle"] = false, 
+	["AutoBuyNearestVirusEggToggle"] = false, 
+	["AutoFindTokyoAlleyEggToggle"] = false, 
+	["AutoBuyNearestTokioAlleyEggToggle"] = false, 
+	["AutoCatchPetsModeDropdown"] = "Bigger Chance First", -- Options = {"Bigger Chance First", "Lower Chance First"}
+	["AutoCatchPetsChanceForUltraCubeSlider"] = 10, -- Range = {0, 100}
+	["AutoCatchPetsToggle"] = false, 
+	["AutoClaimTrainerQuestsRewardToggle"] = false, 
+	["AutoBuyPetCubeMerchantToggle"] = false, 
+	["AutoServerHopIfNotWoodcuttingTreeModeDropdown"] = "Mode 1", -- Options = {"Mode 1", "Mode 2"}
+	["AutoServerHopIfNotWoodcuttingTreeTypeDropdown"] = "Elm", -- Options = {"Golden Willow", "Fantasy", "Elm", "Evergreen", "Birch", "Oak"}
+	["AutoServerHopIfNotWoodcuttingTreeToggle"] = false, 
+	["AutoWoodcuttingToggle"] = false, 
+	["AutoBuyNextAxeMerchantToggle"] = false, 
+	["AutoClaimWoodcuttingQuestGiftToggle"] = false, 
+	["AutoDoodleBattleTableMultiDropdown"] = {"Cat", "Ducky", "Monkey", "Tiger", "Dragon"}, -- Options = {"Cat", "Ducky", "Monkey", "Tiger", "Dragon"}
+	["AutoDoodleBattleModeDropdown"] = "Recommended Skill", -- Options = {"Recommended Skill", "Minimum Skill"}
+	["AutoDoodleBattleDragonSkillSlider"] = 25000, -- Range = {17500, 30000}
+	["AutoDoodleBattleToggle"] = false, 
+	["AutoUsePencilsTableMultiDropdown"] = {}, -- Options = {"Golden Pencil", "Diamond Pencil", "Rainbow Pencil"}
+	["AutoUsePencilsToggle"] = false, 
+	["AutoClaimPaintSplotchesTableMultiDropdown"] = {}, -- Options = {"Red Paint Splotche", "Green Paint Splotche", "Blue Paint Splotche"}
+	["AutoClaimPaintSplotchesToggle"] = false, 
+	["AutoMailPencilsAccountUsernameInput"] = false, 
+	["AutoMailPencilsTableMultiDropdown"] = {}, -- Options = {"Golden Pencil", "Diamond Pencil", "Rainbow Pencil"}
+	["AutoMailGoldenPencilsAmountSlider"] = 25, -- Range = {1, 100}
+	["AutoMailDiamondPencilsAmountSlider"] = 10, -- Range = {1, 50}
+	["AutoMailRainbowPencilsAmountSlider"] = 5, -- Range = {1, 25}
+	["AutoMailPencilsToggle"] = false, 
+	["AutoMailDoodleGiftsAccountUsernameInput"] = false, 
+	["AutoMailDoodleGiftsAmountSlider"] = 5, -- Range = {1, 25}
+	["AutoMailDoodleGiftsToggle"] = false, 
+	["AreaDropdown"] = "", -- Options not properly defined
+	["MachineDropdown"] = "", -- Options not properly defined
+	["MerchantsDropdown"] = "", -- Options not properly defined
+	["VendingMachineDropdown"] = "", -- Options not properly defined
+	["WalkSpeedEnablerToggle"] = false, 
+	["WalkSpeedSlider"] = 16, -- Range = {0, 500}
+	["NoClipToggle"] = false, 
+	["WhiteScreenToggle"] = false, 
+	["ServerHopTypeDropdown"] = "Random", -- Options = {"Random", "Best Ping", "Most Players", "Least Players"}
+}
+
+--Pets GO!
+_G.ZapSettings = {
+	["AutoThievingToggle"] = false, 
+	["AutoThievingStallDropdown"] = "Royal Stall", -- Options = {"Busted Shack", "Wooden Stall", "Stone Stall", "Marble Stall", "Bronze Stall",  "Advanced Stall", "Golden Stall", "Royal Stall"}
+	["BypassThievingPositionToggle"] = false, 
+	["AutoBuyThievingMerchantToggle"] = false, 
+	["ThievingChestTableMultiDropdown"] = {}, -- Options = {"Basic Thieving Chest", "Rare Thieving Chest", "Epic Thieving Chest", "Legendary Thieving Chest", "Celestial Thieving Chest", "Runic Thieving Chest", "Titanic Thieving Chest"}
+	["AutoOpenThievingChestToggle"] = false, 
+	["AutoUseThievingScrollTableMultiDropdown"] = {}, -- Options = {"Thieving Success Scroll", "Thieving Luck Scroll", "Thieving Speed Scroll"}
+	["AutoUseThievingScrollToggle"] = false, 
+	["PetsGoNewTitanicPetsWebhookInput"] = false, 
+	["PetsGoNewTitanicPetsToggle"] = false, 
+	["PetsGoNewHugePetsWebhookInput"] = false, 
+	["PetsGoNewHugePetsToggle"] = false, 
+	["PetsGoNewPetsMinimumDifficultyInput"] = false, 
+	["PetsGoNewPetsWebhookInput"] = false, 
+	["PetsGoNewPetsToggle"] = false, 
+	["DisableBreakablesModelsToggle"] = false, 
+	["DisablePetsRenderingToggle"] = false, 
+	["DisableEffectsRenderingToggle"] = false, 
+	["DisableConfettiRenderingToggle"] = false, 
+	["DeleteUnnecessaryPartsToggle"] = false, 
+	["InfinitePetSpeedToggle"] = false, 
+	["AutoFarmToggle"] = false, 
+	["AutoCollectToggle"] = false, 
+	["AutoCollectHiddensToggle"] = false, 
+	["AutoDigRedCrossToggle"] = false, 
+	["AutoPopFlyingGiftsToggle"] = false, 
+	["AutoFishingToggle"] = false, 
+	["BypassFishingPositionToggle"] = false, 
+	["AutoBuyFishingMerchantToggle"] = false, 
+	["AutoUseFishingBaitTableMultiDropdown"] = {}, -- Options = {"Basic Fishing Bait", "Rare Fishing Bait", "Epic Fishing Bait", "Legendary Fishing Bait", "Exclusive Fishing Bait"}
+	["AutoUseFishingBaitToggle"] = false, 
+	["TreasureChestTableMultiDropdown"] = {}, -- Options = {"Basic Treasure Chest", "Rare Treasure Chest", "Epic Treasure Chest", "Legendary Treasure Chest", "Exclusive Treasure Chest"}
+	["AutoOpenTreasureChestToggle"] = false, 
+	["AutoIceFishingToggle"] = false, 
+	["BypassIceFishingPositionToggle"] = false, 
+	["AutoBuyIceFishingMerchantToggle"] = false, 
+	["AutoUseFrozenFishingBaitToggle"] = false, 
+	["AutoOpenFrozenTreasureChestToggle"] = false, 
+	["AutoDarkIceFishingToggle"] = false, 
+	["BypassDarkIceFishingPositionToggle"] = false, 
+	["AutoOpenAbyssalTreasureChestToggle"] = false, 
+	["AutoMiningToggle"] = false, 
+	["BypassMiningPositionToggle"] = false, 
+	["FarmMagmaOreToggle"] = false, 
+	["AutoBuyMiningMerchantToggle"] = false, 
+	["MiningChestTableMultiDropdown"] = {}, -- Options = {"Basic Mining Chest", "Rare Mining Chest", "Epic Mining Chest", "Legendary Mining Chest", "Celestial Mining Chest", "Runic Mining Chest", "Titanic Mining Chest"}
+	["AutoOpenMiningChestToggle"] = false, 
+	["AutoUseMiningScrollTableMultiDropdown"] = {}, -- Options = {"Mining Damage Scroll", "Mining Loot Scroll", "Mining Speed Scroll", "Magma Scroll"}
+	["AutoUseMiningScrollToggle"] = false, 
+	["AutoRollToggle"] = false, 
+	["AutoClaimBonusRollToggle"] = false, 
+	["DicePotionTableMultiDropdown"] = {}, -- Options = {"Golden Dice Potion", "Rainbow Dice Potion", "Blazing Dice Potion"}
+	["AutoUseDicePotionToggle"] = false, 
+	["AutoUseInstantLuckPotionTypeDropdown"] = "Instant Luck Potion 1", -- Options = {"Instant Luck Potion 1", "Instant Luck Potion 2", "Instant Luck Potion 3", "Instant Luck Potion 4"}
+	["AutoUseInstantLuckPotionWhenDropdown"] = "Golden Rainbow or Blazing", -- Options = {"Golden, Rainbow or Blazing", "Golden", "Rainbow", "Blazing", "Golden and Rainbow", "Golden, Rainbow and Blazing"}
+	["AutoUseInstantLuckPotionToggle"] = false, 
+	["AutoMailPetsAccountUsernameInput"] = false, 
+	["AutoMailPetsToggle"] = false, 
+	["AutoMailItemsAccountUsernameInput"] = false, 
+	["AutoMailItemsTableMultiDropdown"] = {}, -- Options = {"Crystal Key Lower Half", "Crystal Key Upper Half", "Crystal Key", "Secret Key", "Legendary Fishing Bait", "Exclusive Fishing Bait", "Corrupted Huge Bait", "Legendary Treasure Chest", "Exclusive Treasure Chest", "Abyssal Treasure Chest", "Golden Fishing Rod", "Diamond Fishing Rod", "Frozen Fishing Rod", "Corrupted Fishing Rod", "Instant Luck Potion 4", "Valentines God Potion", "Thieving God Potion", "Heartbreak God Potion", "Jelly God Potion", "Autumn God Potion", "Winter God Potion", "Holiday God Potion", "God Potion", "Huge Egg", "Hype Egg", "Winter Egg", "Naughty Egg", "Nice Egg", "Holiday Egg", "Cupid Egg", "Heartbreak Egg", "Titanic Gift Bag", "Naughty Gift", "Nice Gift", "Holiday Gift", "Santa's Scroll", "Ice Fishing Scroll", "Holiday Damage Scroll"}
+	["AutoMailItemsToggle"] = false, 
+	["AutoClaimPlayTimeRewardsToggle"] = true, 
+	["AutoBuyUpgradesToggle"] = false, 
+	["AutoClaimDefaultForeverPackFreeGiftToggle"] = false, 
+	["IndexMerchantOffersTableMultiDropdown"] = {}, -- Options = {"Breakables Potion 4", "Breakables Potion 5", "Coins Potion 4", "Coins Potion 5", "Lucky Potion 4", "Lucky Potion 5", "Faster Rolls Potion", "Golden Dice Potion", "Rainbow Dice Potion", "Instant Luck Potion 1", "Instant Luck Potion 2", "Instant Luck Potion 3", "Instant Luck Potion 4"}
+	["AutoBuyIndexMerchantToggle"] = false, 
+	["AutoBuyStandardMerchantToggle"] = false, 
+	["AutoBuyVendingMachinesToggle"] = false, 
+	["AutoClaimMailboxToggle"] = false, 
+	["FruitTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon", "Rainbow"}
+	["AutoEatFruitTypeDropdown"] = "Normal", -- Options = {"Normal", "Shiny"}
+	["AutoEatFruitAmountSlider"] = 1, -- Range = {1, 100}
+	["AutoEatFruitToggle"] = false, 
+	["PotionTableMultiDropdown"] = {}, -- Options = {"Coins", "Breakables", "Walkspeed", "Lucky", "Items", "Faster Rolls", "The Cocktail", "Blizzard", "Lightning"}
+	["AutoUsePotionToggle"] = false, 
+	["AutoOpenLootboxTableMultiDropdown"] = {}, -- Options = {"Autumn Gift", "Naughty Gift", "Nice Gift", "Holiday Gift", "Bundle O' Boosts", "Bundle O' Scrolls", "Tech Gift", "Lightning Gift", "Titanic Present", "Valentines Present", "Heartbreak Present", "Thieving Present"}
+	["AutoOpenLootboxToggle"] = false, 
+	["AutoOpenEggTableMultiDropdown"] = {}, -- Options not properly defined
+	["AutoOpenEggToggle"] = false, 
+	["UpgradeFruitTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon"}
+	["AutoUpgradeFruitToRainbowKeepSlider"] = 100, -- Range = {0, 1000}
+	["AutoUpgradeFruitToRainbowToggle"] = false, 
+	["UpgradeFruitShinyTableMultiDropdown"] = {}, -- Options = {"Apple", "Orange", "Banana", "Pineapple", "Watermelon", "Rainbow"}
+	["AutoUpgradeFruitKeepSlider"] = 100, -- Range = {0, 1000}
+	["AutoUpgradeFruitToShinyToggle"] = false, 
+	["CraftPotionTableMultiDropdown"] = {}, -- Options = {"Lucky Potion 2", "Lucky Potion 3", "Lucky Potion 4", "Lucky Potion 5", "Lucky Potion 6", "Lucky Potion 7", "Coins Potion 2", "Coins Potion 3", "Coins Potion 4", "Coins Potion 5", "Coins Potion 6", "Coins Potion 7", "Breakables Potion 1", "Breakables Potion 2", "Breakables Potion 3", "Breakables Potion 4", "Faster Rolls Potion 1", "Faster Rolls Potion 2", "Faster Rolls Potion 3", "Items Potion 1", "Items Potion 2", "Items Potion 3", "Items Potion 4", "Items Potion 5", "Walkspeed Potion 1", "Walkspeed Potion 2", "Walkspeed Potion 3", "Golden Dice Potion", "Rainbow Dice Potion", "Blazing Dice Potion", "Instant Luck Potion 1", "Instant Luck Potion 2", "Instant Luck Potion 3", "The Cocktail", "Blizzard Potion", "Lightning Potion"}
+	["AutoCraftPotionToggle"] = false, 
+	["AutoPetJuicerTypeTableMultiDropdown"] = {}, -- Options = {"Instant Luck Potion 1", "Instant Luck Potion 2", "Instant Luck Potion 3", "Instant Luck Potion 4"}
+	["AutoPetJuicerToggle"] = false, 
+	["WalkSpeedEnablerToggle"] = false, 
+	["WalkSpeedSlider"] = 16, -- Range = {0, 500}
+	["NoClipToggle"] = false, 
+	["WhiteScreenToggle"] = false, 
+	["ServerHopTypeDropdown"] = "Random", -- Options = {"Random", "Best Ping", "Most Players", "Least Players"}
+}
